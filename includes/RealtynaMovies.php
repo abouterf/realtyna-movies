@@ -8,12 +8,13 @@ if ( ! class_exists( 'RealtynaMovies' ) )
 	{
 		public function __construct ()
 		{
+			add_action( 'init', [ $this, 'realtyna_register_genre_taxonomy_movies_post_type' ] );
 			add_action( 'init', [ $this, 'realtyna_register_movies_post_type' ] );
 		}
 
 		public function realtyna_register_movies_post_type ()
 		{
-			$details = [
+			$labels = [
 				'name'                  => 'Movies',
 				'singular_name'         => 'Movie',
 				'menu_name'             => 'Movies',
@@ -41,11 +42,11 @@ if ( ! class_exists( 'RealtynaMovies' ) )
 			];
 
 			$args = [
-				'labels'             => $details,
+				'labels'             => $labels,
 				'public'             => true,
 				'publicly_queryable' => true,
 				'show_ui'            => true,
-				'menu_icon'          => 'dashicons-movie',
+				'menu_icon'          => 'dashicons-video-alt2',
 				'show_in_menu'       => true,
 				'query_var'          => true,
 				'capability_type'    => 'post',
@@ -53,10 +54,36 @@ if ( ! class_exists( 'RealtynaMovies' ) )
 				'hierarchical'       => false,
 				'menu_position'      => 20,
 				'supports'           => [ 'title', 'editor', 'author', 'thumbnail' ],
-				'taxonomies'         => [ 'category', 'post_tag' ],
+				'taxonomies'         => [ 'category', 'genre', 'post_tag' ],
 				'show_in_rest'       => true
 			];
 			register_post_type( 'movie', $args );
+		}
+
+		public function realtyna_register_genre_taxonomy_movies_post_type ()
+		{
+			$labels = [
+				'singular_name'              => 'Genre',
+				'all_items'                  => 'All Genres',
+				'edit_item'                  => 'Edit Genre',
+				'view_item'                  => 'View Genre',
+				'update_item'                => 'Update Genre',
+				'add_new_item'               => 'Add New Genre',
+				'new_item_name'              => 'New Genre Name',
+				'search_items'               => 'Search Genres',
+				'popular_items'              => 'Popular Genres',
+				'separate_items_with_commas' => 'Separate genres with comma',
+				'choose_from_most_used'      => 'Choose from most used genres',
+				'not_found'                  => 'No Genres found',
+			];
+			register_taxonomy( 'genre', [ 'movie' ], [
+				'label'             => 'Genre',
+				'hierarchical'      => false,
+				'show_admin_column' => true,
+				'show_in_rest'      => true,
+				'labels'            => $labels
+			] );
+			register_taxonomy_for_object_type( 'genre', 'movie' );
 		}
 	}
 
