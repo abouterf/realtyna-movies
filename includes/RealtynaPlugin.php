@@ -7,12 +7,10 @@ if ( ! class_exists( 'RealtynaPlugin' ) )
 	final class RealtynaPlugin
 	{
 		protected static $_instance;
-		private $realtyna_movies;
 
 		public function __construct ()
 		{
-			require_once './RealtynaMovies.php';
-			$this->realtyna_movies = new RealtynaMovies();
+			require_once REALTYNA_PATH . 'includes/RealtynaMovies.php';
 		}
 
 		public static function get_instance ()

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Movies
- * Description:       implementing CRUD features for movies.
+ * Description:       Implementing CRUD Features For Movies | Realtyna Test Project
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.4
