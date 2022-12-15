@@ -57,7 +57,7 @@ if ( ! class_exists( 'RealtynaMoviesModule' ) )
 			add_shortcode( 'realtyna_list_movies', [ $this, 'realtyna_list_movies_function' ] );
 		}
 
-		public function realtyna_list_movies_function ()
+		public function realtyna_list_movies_function (): string
 		{
 			global $post;
 			$output       = '';
@@ -66,7 +66,6 @@ if ( ! class_exists( 'RealtynaMoviesModule' ) )
 				'orderby'        => 'title',
 				'order'          => 'ASC',
 				'posts_per_page' => 10,
-
 			];
 			$movies_query = new WP_Query( $args );
 			if ( $movies_query->have_posts() )

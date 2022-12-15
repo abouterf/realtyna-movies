@@ -23,6 +23,7 @@ if ( ! class_exists( 'RealtynaPlugin' ) )
 		{
 			require_once REALTYNA_PATH . 'includes/RealtynaMovies.php';
 			require_once REALTYNA_PATH . 'includes/RealtynaMoviesModule.php';
+			require_once REALTYNA_PATH . 'includes/widgets/RealtynaMoviesWidget.php';
 		}
 
 	}
